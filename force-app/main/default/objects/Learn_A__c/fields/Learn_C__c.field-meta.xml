@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Learn_C__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Learn C</label>
+    <referenceTo>Learn_C__c</referenceTo>
+    <relationshipLabel>Learn As</relationshipLabel>
+    <relationshipName>Learn_As</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
