@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-theme_default slds-card slds-var-p-around_small">
+        <lightning-record-picker lwc:ref="picker" label={label} placeholder="Search Records..."
+            object-api-name={objectName} onchange={handleChange}>
+        </lightning-record-picker>
+
+        <!-- <template for:each={selectedItems} for:item="item">
+            <lightning-pill key={item.name} name={item.name} label={item.label} href={item.href}
+                onremove={handleItemRemove}>
+                <lightning-icon icon-name={iconName} alternative-text={label}>
+                </lightning-icon>
+            </lightning-pill>
+            </template> -->
+            
+        <lightning-pill-container if:true={isMultiSelect} items={selectedItems}
+            onitemremove={handleItemRemove}></lightning-pill-container>
+    </div>
+</template>

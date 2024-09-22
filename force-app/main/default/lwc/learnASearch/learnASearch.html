@@ -1,0 +1,227 @@
+<template>
+    <lightning-card title="Search 'Learn A' Object">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-4">
+                <lightning-input 
+                    label="Name" 
+                    value={get_NAME_FIELD_value}
+                    data-field={get_NAME_FIELD} 
+                    onchange={handleInputChange}>
+                </lightning-input>
+            </div>
+
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-4">
+                <lightning-input 
+                    label="Phone Number" 
+                    value={get_PHONE_NUMBER_FIELD_value}
+                    type="tel"
+                    data-field={get_PHONE_NUMBER_FIELD} 
+                    onchange={handleInputChange}>
+                </lightning-input>
+                <!-- Use pattern="^\+91 [1-9][0-9]{9}$" if needed -->
+            </div>
+            
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-4">
+                <lightning-input
+                    label="Checked Criteria"
+                    checked={get_enabled_CHECKED_FIELD_value}
+                    type="checkbox"
+                    data-field={get_CHECKED_FIELD}
+                    onchange={handleToggleChange}
+                ></lightning-input>
+
+                <template lwc:if={get_enabled_CHECKED_FIELD_value}>
+                    <lightning-input
+                        label="Is Checked"
+                        checked={get_CHECKED_FIELD_value}
+                        type="checkbox"
+                        data-field={get_CHECKED_FIELD}
+                        onchange={handleInputChange}
+                    ></lightning-input>
+                </template>
+            </div>
+
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-4">
+                <lightning-input
+                    label="Time Criteria"
+                    checked={get_enabled_TIME_FIELD_value}
+                    type="checkbox"
+                    data-field={get_TIME_FIELD}
+                    onchange={handleToggleChange}
+                ></lightning-input>
+
+                <template lwc:if={get_enabled_TIME_FIELD_value}>
+                    <lightning-input 
+                        label="Starting Datetime"
+                        value={get_START_TIME_FIELD_value}
+                        type="datetime" 
+                        data-field={get_START_TIME_FIELD}
+                        onchange={handleInputChange}
+                    >
+                    </lightning-input>
+                    
+                    <lightning-input 
+                        label="Ending Datetime"
+                        value={get_END_TIME_FIELD_value}
+                        type="datetime" 
+                        data-field={get_END_TIME_FIELD}
+                        onchange={handleInputChange}
+                    >
+                    </lightning-input>
+                </template>
+            </div>
+
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-2">
+                <lightning-input
+                    label="Picklist Criteria"
+                    checked={get_enabled_PICKLIST_FIELD_value}
+                    type="checkbox"
+                    data-field={get_PICKLIST_FIELD}
+                    onchange={handleToggleChange}
+                ></lightning-input>
+
+                <template lwc:if={get_enabled_PICKLIST_FIELD_value}>
+                    <lightning-dual-listbox
+                        label="Select Picklist Options"
+                        source-label="Available"
+                        selected-label="Selected"
+                        options={picklistValues}
+                        data-field={get_PICKLIST_FIELD}
+                        value={get_PICKLIST_FIELD_value}
+                        onchange={handleInputChange}
+                    >
+                    </lightning-dual-listbox>
+                </template>
+            </div>
+            
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-2">
+                <lightning-input
+                    label="Multi Picklist Criteria"
+                    checked={get_enabled_MULTI_PICKLIST_FIELD_value}
+                    type="checkbox"
+                    data-field={get_MULTI_PICKLIST_FIELD}
+                    onchange={handleToggleChange}
+                ></lightning-input>
+
+                <template lwc:if={get_enabled_MULTI_PICKLIST_FIELD_value}>
+                    <lightning-input
+                        label="Loose Match"
+                        checked={get_LOOSE_MATCH_MULTI_PICKLIST_FIELD_value}
+                        type="checkbox"
+                        data-field={get_LOOSE_MATCH_MULTI_PICKLIST_FIELD}
+                        onchange={handleInputChange}
+                    ></lightning-input>
+
+                    <lightning-dual-listbox
+                        label="Select Multi Picklist Options"
+                        source-label="Available"
+                        selected-label="Selected"
+                        options={multiPicklistValues}
+                        data-field={get_MULTI_PICKLIST_FIELD}
+                        value={get_MULTI_PICKLIST_FIELD_value}
+                        onchange={handleInputChange}
+                    >
+                    </lightning-dual-listbox>
+                </template>
+            </div>
+
+            <!-- <div class="slds-col slds-p-around_x-small slds-size_1-of-4">
+                <lightning-input
+                    label="Location Criteria"
+                    checked={get_enabled_LOCATION_FIELD_value}
+                    type="checkbox"
+                    data-field={get_LOCATION_FIELD}
+                    onchange={handleToggleChange}
+                ></lightning-input>
+
+                <template lwc:if={get_enabled_LOCATION_FIELD_value}>
+                    Location
+                </template>
+            </div> -->
+
+            <div class="slds-col slds-p-around_x-small slds-size_1-of-2">
+                <lightning-input
+                    label="Parent Criteria"
+                    checked={get_enabled_PARENT_FIELD_value}
+                    type="checkbox"
+                    data-field={get_PARENT_FIELD}
+                    onchange={handleToggleChange}
+                ></lightning-input>
+
+                <template lwc:if={get_enabled_PARENT_FIELD_value}>
+                    <!-- <lightning-record-picker
+                        label="Parent Learn_C"
+                        placeholder="Search Learn_C ..."
+                        object-api-name="Learn_C__c"
+                        data-field={get_PARENT_FIELD}
+                        value={get_PARENT_FIELD_value}
+                        onchange={handleInputChange}
+                    >
+                    </lightning-record-picker> -->
+
+                    <c-multi-select-record-picker
+                        object-name={get_PARENT_FIELD}
+                        label="Select Parent Learn C"
+                        data-field={get_PARENT_FIELD}
+                        value={get_PARENT_FIELD_value}
+                        onchange={handleInputChange}
+                    >
+                    </c-multi-select-record-picker>
+                </template>
+            </div>
+        </div>
+
+        <div class="slds-m-top_medium slds-p-around_x-small">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-p-around_x-small">
+                    <lightning-button variant="brand" icon-name="utility:search" label="Search" onclick={handleSearch} stretch></lightning-button>
+                </div>
+
+                <div class="slds-col slds-p-around_x-small">
+                    <lightning-button variant="destructive" icon-name="utility:clear" label="Reset" onclick={handleReset} stretch></lightning-button>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+
+    <lightning-card class="slds-m-top_medium slds-p-around_medium" title="Results">
+        <div class="slds-m-top_large slds-p-around_small">
+            <template lwc:if={notYetSearched}>
+                <lightning-layout>
+                    <lightning-layout-item class="centered-item" size="3">
+                        <div class="slds-align_absolute-center">
+                            <lightning-icon icon-name="utility:animal_and_nature" class="slds-icon slds-icon_large" title="Get started with your search"></lightning-icon>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="9">
+                        <div class="slds-text-heading_large">Search to get results</div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+            <template lwc:elseif={resultEmpty}>
+                <lightning-layout>
+                    <lightning-layout-item class="centered-item" size="3">
+                        <div class="slds-align_absolute-center">
+                            <lightning-icon icon-name="utility:sentiment_neutral" class="slds-icon slds-icon_large" title="No results found"></lightning-icon>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="9">
+                        <div class="slds-text-heading_large">No results found , refine your search</div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+            <template lwc:else>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={result} for:item="obj">
+                        <lightning-layout-item key={obj.Id} size="4" class="slds-var-p-around_x-small">
+                            <c-learn-a-search-result-card entity={obj} onview={navigateToRecordPage}></c-learn-a-search-result-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

@@ -13,11 +13,12 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Super App</label>
     <navType>Standard</navType>
-    <tabs>Learn_A_D_Junction_Object__c</tabs>
+    <tabs>Learn_Object_Search</tabs>
     <tabs>Learn_A__c</tabs>
     <tabs>Learn_B__c</tabs>
     <tabs>Learn_C__c</tabs>
     <tabs>Learn_D__c</tabs>
+    <tabs>Learn_A_D_Junction_Object__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Super_App_UtilityBar</utilityBar>
 </CustomApplication>

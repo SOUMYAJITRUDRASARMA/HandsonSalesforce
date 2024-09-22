@@ -1,0 +1,16 @@
+<template>
+    <div class="container">
+        <lightning-card title={entity.Name}>
+            <lightning-button icon-name="utility:preview" slot="actions" label="View" onclick={navigateToRecordPage}></lightning-button>
+            <!-- <lightning-button icon-name="utility:forward_up" onclick={navigateToRecordPageInNewTab}></lightning-button> -->
+            <template lwc:if={isParentAvailable}>
+                <p class="slds-p-horizontal_small">Learn_C: {entity.Learn_C__r.Name}</p>
+            </template>
+            
+            <template lwc:else>
+                <p class="slds-p-horizontal_small">Learn_C: <span style="color: red; font-weight: bold">N/A</span></p>
+            </template>
+            <!-- <p slot="footer">Card Footer</p> -->
+        </lightning-card>
+    </div>
+</template>
